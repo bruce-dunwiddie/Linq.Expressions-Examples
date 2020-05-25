@@ -1,8 +1,8 @@
-[Calling simple instance method](#calling-simple-instance-method)
+- [Calling simple instance method](#calling-simple-instance-method)
 
-## Calling simple instance method
+### Calling simple instance method
 
-### Code:
+#### Code:
 
 ```csharp
 DateTime testDate = DateTime.Parse("1/2/2020 1:23:45.678");
@@ -20,6 +20,9 @@ ParameterExpression date = Expression.Parameter(
 ConstantExpression format = Expression.Constant(
     "hh:mm:ss");			
 
+// define the body of the lambda
+
+// we're going to just have a single method call within the body
 MethodCallExpression body = Expression.Call(
     date,
     toString,
@@ -41,14 +44,16 @@ Expression<Func<DateTime, string>> lambda = Expression.Lambda<Func<DateTime, str
     // expression body definition above to get them to map through Func call
     new ParameterExpression[] { date });
 
+// create the Func from the lambda
 Func<DateTime, string> func = lambda.Compile();
 
-// use Func to execute method
+// can now use Func to execute instance method on object instance
+// and get result
 string formattedDate = func(testDate);
 
 Console.WriteLine(formattedDate);
 ```
-### Result:
+#### Result:
 ```
 01:23:45
 ```
