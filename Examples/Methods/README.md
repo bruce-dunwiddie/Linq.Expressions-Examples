@@ -12,7 +12,7 @@
 
 ### Calling simple instance method
 
-[Fiddle](https://dotnetfiddle.net/hFssOH)
+#### Fiddle: (https://dotnetfiddle.net/hFssOH)
 
 #### Code:
 
@@ -81,7 +81,7 @@ Console.WriteLine(formattedDate);
 
 ### Calling simple static method
 
-[Fiddle](https://dotnetfiddle.net/8JT99i)
+#### Fiddle: (https://dotnetfiddle.net/8JT99i)
 
 #### Code:
 
@@ -144,7 +144,7 @@ Console.WriteLine(formattedDate);
 
 ### Calling instance method with no return
 
-[Fiddle](https://dotnetfiddle.net/AY5Ymq)
+#### Fiddle: (https://dotnetfiddle.net/AY5Ymq)
 
 #### Code:
 
