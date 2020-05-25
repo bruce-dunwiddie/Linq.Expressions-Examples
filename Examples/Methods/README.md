@@ -1,6 +1,10 @@
+## Linq.Expressions code examples for method calls
+
 - [Calling simple instance method](#calling-simple-instance-method)
 
 - [Calling simple static method](#calling-simple-static-method)
+
+- [Calling instance method with no return](#calling-instance-method-with-no-return)
 
 ***
 
@@ -128,4 +132,73 @@ Console.WriteLine(formattedDate);
 
 ```
 1/2/2020 1:23:45 AM
+```
+
+***
+
+### Calling instance method with no return
+
+### Code:
+
+```csharp
+List<string> words = new List<string>() { "one", "two" };
+
+// locate the method to be called
+MethodInfo add = words
+    .GetType()
+    .GetMethod(
+        "Add", 
+        new Type[] { typeof(string) });
+
+// ParameterExpression is used to map a value from the caller
+// to the lambda body
+
+// this is the same for object instances as well as method
+// parameters
+ParameterExpression list = Expression.Parameter(
+    words.GetType());
+
+ParameterExpression word = Expression.Parameter(
+    typeof(string));
+
+// define the body of the lambda
+
+// we're going to just have a single method call within the body
+MethodCallExpression body = Expression.Call(
+    list,
+    add,
+    new Expression[] { word });
+
+// Action<in T1, in T2>
+
+Expression<Action<List<string>, string>> lambda = Expression.Lambda<Action<List<string>, string>>(
+    
+    // this is going to be the function body/logic
+
+    // the value returned from a function is the last expression in its body
+    body,
+
+    // these is the parameter list being passed in to the lambda body
+
+    // have to use same ParameterExpression instances referenced in
+    // expression body definition above to get them to map through Func call
+
+    // remember to add instance parameter
+    new ParameterExpression[] { list, word });
+
+// create the Action from the lambda
+Action<List<string>, string> action = lambda.Compile();
+
+// use Action to execute method
+action(words, "three");
+
+string wordsList = string.Join(",", words);
+
+Console.WriteLine(wordsList);
+```
+
+### Result:
+
+```
+one,two,three
 ```
