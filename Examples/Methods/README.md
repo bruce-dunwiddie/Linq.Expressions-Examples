@@ -20,6 +20,8 @@ steps:
 
 ***
 
+### Examples:
+
 - [Calling simple instance method](#calling-simple-instance-method)
 
 - [Calling simple static method](#calling-simple-static-method)

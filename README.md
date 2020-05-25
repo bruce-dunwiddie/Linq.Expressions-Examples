@@ -1,37 +1,30 @@
-Code examples of Linq.Expressions usage with explanations.
+Code examples of System.Linq.Expressions namespace class usage with explanations.
 
-***
+### Topics
 
 - [Methods](Examples/Methods/)
 
-- Constructors
+- Constructors (Coming Soon)
 
-- Fields
+- Fields (Coming Soon)
 
-- Properties
+- Properties (Coming Soon)
 
-- Blocks
+- Blocks (Coming Soon)
 
-- Variables
+- Variables (Coming Soon)
 
-- Constants
+- Constants (Coming Soon)
 
-- Casts
+- Casts (Coming Soon)
 
-- Loops
+- Loops (Coming Soon)
 
-- Conditions
-
-***
+- Conditions (Coming Soon)
 
 Complete unit tests with compilable project can also be found [here](https://github.com/bruce-dunwiddie/Linq.Expressions-Examples-Code).
 
-The sections above provide topic specific code examples for using the System.Linq.Expressions
-namespace classes.
-
-Here is an example:
-
-### Calling simple instance method
+### Sample Code Example for Calling Instance Method
 
 This example shows the general flow of creating the lambda delegate for
 executing an instance method. 
