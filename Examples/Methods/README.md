@@ -2,6 +2,8 @@
 
 - [Calling simple static method](#calling-simple-static-method)
 
+***
+
 ### Calling simple instance method
 
 #### Code:
@@ -43,7 +45,7 @@ Expression<Func<DateTime, string>> lambda = Expression.Lambda<Func<DateTime, str
     // this is going to be the function body/logic
     
     // the value returned from a function is the last expression in its body
-	body,
+    body,
 
     // these is the parameter list being passed in to the lambda body
 
@@ -67,6 +69,8 @@ Console.WriteLine(formattedDate);
 01:23:45
 ```
 
+***
+
 ### Calling simple static method
 
 #### Code:
@@ -86,6 +90,9 @@ ParameterExpression dateAsString = Expression.Parameter(
 // define the body of the lambda
 
 // we're going to just have a single method call within the body
+
+// we're using the overload with just two arguments because we're
+// calling a static method with no instance object
 MethodCallExpression body = Expression.Call(
     parse,
     new Expression[] { dateAsString });
