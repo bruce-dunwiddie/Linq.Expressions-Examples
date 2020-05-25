@@ -1,5 +1,25 @@
 ## Linq.Expressions code examples for method calls
 
+The code examples below show the general flow of calling a method
+using the System.Linq.Expressions namespace, with a few of the
+common usage scenarios and explanations.
+
+To create a delegate method (delegate, Func, or Action) using
+the System.Linq.Expressions namespace, there are generally these
+steps:
+
+- Use reflection to locate the method definition as a MethodInfo instance.
+
+- Create ParameterExpression instances to reference arguments of delegate method. This includes creating ParameterExpressions for instance parameters.
+
+- Create MethodCallExpression instance using MethodInfo, ParameterExpressions, along with any constants or other arguments for method.
+
+- Create generic typed Expression instance (lambda), specifying the top level method that will be the body of the lambda, along with specifying the ParameterExpressions that will correspond to the delegate arguments.
+
+- Compile the lambda into delegate.
+
+***
+
 - [Calling simple instance method](#calling-simple-instance-method)
 
 - [Calling simple static method](#calling-simple-static-method)
@@ -11,6 +31,9 @@
 ***
 
 ### Calling simple instance method
+
+This example shows the general flow of creating the lambda delegate for
+executing an instance method. 
 
 #### Fiddle: (https://dotnetfiddle.net/hFssOH)
 
@@ -81,6 +104,11 @@ Console.WriteLine(formattedDate);
 
 ### Calling simple static method
 
+This example shows how to specify calling a static method. Notice
+that the instance ParameterExpression is left out when defining
+the MethodCallExpression, and when defining the ParameterExpression
+array of the lambda.
+
 #### Fiddle: (https://dotnetfiddle.net/8JT99i)
 
 #### Code:
@@ -143,6 +171,10 @@ Console.WriteLine(formattedDate);
 ***
 
 ### Calling instance method with no return
+
+This example shows how to declare an Action delegate, which
+does not provide a return value, for calling methods that
+do not have a return value.
 
 #### Fiddle: (https://dotnetfiddle.net/AY5Ymq)
 
@@ -214,6 +246,10 @@ one,two,three
 ***
 
 ### Pass results of method into method
+
+This example shows how to create more complex MethodCallExpression
+bodies by passing more complex expression object in as arguments
+to the method, including other method calls.
 
 #### Fiddle: (https://dotnetfiddle.net/CsLrK6)
 
