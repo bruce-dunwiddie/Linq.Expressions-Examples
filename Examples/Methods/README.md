@@ -12,6 +12,8 @@
 
 ### Calling simple instance method
 
+[Fiddle](https://dotnetfiddle.net/hFssOH)
+
 #### Code:
 
 ```csharp
@@ -79,6 +81,8 @@ Console.WriteLine(formattedDate);
 
 ### Calling simple static method
 
+[Fiddle](https://dotnetfiddle.net/8JT99i)
+
 #### Code:
 
 ```csharp
@@ -139,6 +143,8 @@ Console.WriteLine(formattedDate);
 ***
 
 ### Calling instance method with no return
+
+[Fiddle](https://dotnetfiddle.net/AY5Ymq)
 
 #### Code:
 
@@ -208,6 +214,8 @@ one,two,three
 ***
 
 ### Pass results of method into method
+
+[Fiddle](https://dotnetfiddle.net/CsLrK6)
 
 #### Code:
 
