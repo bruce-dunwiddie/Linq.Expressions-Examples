@@ -2,6 +2,8 @@
 
 ## Calling simple instance method
 
+### Code:
+
 ```csharp
 DateTime testDate = DateTime.Parse("1/2/2020 1:23:45.678");
 
@@ -46,6 +48,7 @@ string formattedDate = func(testDate);
 
 Console.WriteLine(formattedDate);
 ```
+### Result:
 ```
 01:23:45
 ```
