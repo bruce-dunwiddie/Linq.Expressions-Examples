@@ -6,6 +6,8 @@
 
 - [Calling instance method with no return](#calling-instance-method-with-no-return)
 
+- [Pass results of method into method](#pass-results-of-method-into-method)
+
 ***
 
 ### Calling simple instance method
@@ -51,7 +53,7 @@ Expression<Func<DateTime, string>> lambda = Expression.Lambda<Func<DateTime, str
     // the value returned from a function is the last expression in its body
     body,
 
-    // these is the parameter list being passed in to the lambda body
+    // this is the parameter list being passed in to the lambda body
 
     // have to use same ParameterExpression instances referenced in
     // expression body definition above to get them to map through Func call
@@ -111,7 +113,7 @@ Expression<Func<string, DateTime>> lambda = Expression.Lambda<Func<string, DateT
     // this is going to be the function body/logic
     body,
     
-    // these is the parameter list being passed in to the lambda body
+    // this is the parameter list being passed in to the lambda body
 
     // have to use same ParameterExpression instances referenced in
     // expression body definition above to get them to map through Func call
@@ -138,7 +140,7 @@ Console.WriteLine(formattedDate);
 
 ### Calling instance method with no return
 
-### Code:
+#### Code:
 
 ```csharp
 List<string> words = new List<string>() { "one", "two" };
@@ -178,7 +180,7 @@ Expression<Action<List<string>, string>> lambda = Expression.Lambda<Action<List<
     // the value returned from a function is the last expression in its body
     body,
 
-    // these is the parameter list being passed in to the lambda body
+    // this is the parameter list being passed in to the lambda body
 
     // have to use same ParameterExpression instances referenced in
     // expression body definition above to get them to map through Func call
@@ -197,8 +199,93 @@ string wordsList = string.Join(",", words);
 Console.WriteLine(wordsList);
 ```
 
-### Result:
+#### Result:
 
 ```
 one,two,three
+```
+
+***
+
+### Pass results of method into method
+
+#### Code:
+
+```csharp
+List<string> dates = new List<string>();
+
+// locate the methods to be called
+MethodInfo add = dates
+    .GetType()
+    .GetMethod(
+        "Add",
+        new Type[] { typeof(string) });
+
+MethodInfo toString = typeof(DateTime)
+    .GetMethod(
+        "ToString",
+        new Type[] { typeof(string) });
+
+// ParameterExpression is used to map a value from the caller
+// to the lambda body
+
+// this is the same for object instances as well as method
+// parameters
+ParameterExpression list = Expression.Parameter(
+    dates.GetType());
+
+ParameterExpression date = Expression.Parameter(
+    typeof(DateTime));
+
+// use Expression.Constant to convert a 'normal' value into an expression
+ConstantExpression format = Expression.Constant(
+    "MMM d");
+
+MethodCallExpression toStringCall = Expression.Call(
+    date,
+    toString,
+    new Expression[] { format });
+
+// define the body of the lambda
+
+// we're passing in the body of one method call in as a
+// parameter to another method call
+MethodCallExpression body = Expression.Call(
+    list,
+    add,
+    new Expression[] { toStringCall });
+
+Expression<Action<List<string>, DateTime>> lambda = Expression.Lambda<Action<List<string>, DateTime>>(
+    
+    // this is going to be the function body/logic
+
+    // the value returned from a function is the last expression in its body
+    body,
+
+    // this is the parameter list being passed in to the lambda body
+
+    // have to use same ParameterExpression instances referenced in
+    // expression body definition above to get them to map through Func call
+    new ParameterExpression[] { list, date });
+
+// create the Action from the lambda
+Action<List<string>, DateTime> action = lambda.Compile();
+
+// use Action to execute method
+
+// this will format the date using the specified format
+// and add the formatted string to the list
+action(dates, DateTime.Parse("1/1/2020"));
+action(dates, DateTime.Parse("1/2/2020"));
+action(dates, DateTime.Parse("2/1/2020"));
+
+string datesAsString = string.Join(",", dates);
+
+Console.WriteLine(datesAsString);
+```
+
+#### Results:
+
+```
+Jan 1,Jan 2,Feb 1
 ```
