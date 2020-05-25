@@ -284,7 +284,7 @@ string datesAsString = string.Join(",", dates);
 Console.WriteLine(datesAsString);
 ```
 
-#### Results:
+#### Result:
 
 ```
 Jan 1,Jan 2,Feb 1
