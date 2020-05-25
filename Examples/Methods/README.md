@@ -250,7 +250,7 @@ one,two,three
 ### Pass results of method into method
 
 This example shows how to create more complex MethodCallExpression
-bodies by passing more complex expression object in as arguments
+bodies by passing more complex expression objects in as arguments
 to the method, including other method calls.
 
 #### Fiddle: (https://dotnetfiddle.net/CsLrK6)
