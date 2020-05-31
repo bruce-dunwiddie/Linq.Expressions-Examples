@@ -76,6 +76,12 @@ string content = func(xml);
 Console.WriteLine(content);
 ```
 
+#### Result:
+
+```
+<document />
+```
+
 ***
 
 ### Set property value
@@ -142,6 +148,12 @@ action(
 	"<document />");
 
 Console.WriteLine(xml.InnerXml);
+```
+
+#### Result:
+
+```
+<document />
 ```
 
 ***
@@ -214,6 +226,12 @@ Func<List<string>, string> func = lambda.Compile();
 string number = func(numbers);
 
 Console.WriteLine(number);
+```
+
+#### Result:
+
+```
+two
 ```
 
 ***
@@ -295,3 +313,8 @@ action(
 Console.WriteLine(numbers[1]);
 ```
 
+#### Result:
+
+```
+three
+```
