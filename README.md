@@ -8,7 +8,7 @@ Code examples of System.Linq.Expressions namespace class usage with explanations
 
 - Fields (Coming Soon)
 
-- Properties (Coming Soon)
+- [Properties](Examples/Properties/)
 
 - Blocks (Coming Soon)
 
